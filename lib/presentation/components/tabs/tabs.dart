@@ -28,26 +28,29 @@ class Tabs extends StatelessWidget {
             child: Row(
               children: [
                 for (int i = 0; i < labels.length; i++)
-                  GestureDetector(
-                    onTap: () {
-                      onValueChange(i);
-                    },
-                    child: Container(
-                      width: labels.length < 3 ? 150 : 107,
-                      height: 33,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: selectedIndex == i
-                            ? AppColors.primary100
-                            : Colors.transparent,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Text(
-                        labels[i],
-                        style: TextStyle(
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    child: GestureDetector(
+                      onTap: () {
+                        onValueChange(i);
+                      },
+                      child: Container(
+                        width: labels.length < 3 ? 150 : 107,
+                        height: 33,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
                           color: selectedIndex == i
-                              ? AppColors.white
-                              : AppColors.primary100,
+                              ? AppColors.primary100
+                              : Colors.transparent,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Text(
+                          labels[i],
+                          style: TextStyle(
+                            color: selectedIndex == i
+                                ? AppColors.white
+                                : AppColors.primary100,
+                          ),
                         ),
                       ),
                     ),
