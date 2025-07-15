@@ -30,7 +30,7 @@ class BigButton extends StatelessWidget {
             height: 24,
             child: Text(
               text,
-              style: TextStyles.normalTextBold,
+              style: TextStyles.normalTextBold.copyWith(color: AppColors.white),
 
             ),
           ),
