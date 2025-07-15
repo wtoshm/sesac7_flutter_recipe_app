@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_recipe_app/ui/app_colors.dart';
 
 abstract class TextStyles {
   static const lineHeightRatio = 1.5;
@@ -33,6 +34,7 @@ abstract class TextStyles {
   );
 
   static const TextStyle normalTextBold = TextStyle(
+    color: AppColors.white,
     fontFamily: 'Poppins',
     fontWeight: FontWeight.bold,
     fontSize: 16,
