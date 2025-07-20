@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_recipe_app/data/mock_data/json_recipes.dart';
 import 'package:flutter_recipe_app/data/model/recipe.dart';
 import 'package:flutter_recipe_app/presentation/components/cards/searched_recipe_card.dart';
+import 'package:flutter_recipe_app/presentation/components/modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:flutter_recipe_app/ui/app_colors.dart';
 import 'package:flutter_recipe_app/ui/text_styles.dart';
 
@@ -47,37 +48,44 @@ class SearchRecipesScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(width: 20),
-                Icon(
-                  Icons.filter_alt_outlined,
-                  size: 40,
-                  color: AppColors.primary100,
+                IconButton(onPressed: () {
+                  showModalBottomSheet(
+                    context: context, builder: (BuildContext context) {
+                    return ModalBottomSheet();
+                  },);
+                },
+                  icon: Icon(
+                    Icons.filter_alt_outlined,
+                    size: 40,
+                    color: AppColors.primary100,),
+
                 ),
               ],
             ),
             SizedBox(height: 20),
             isShowingSearchResult
                 ? Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Search Result',
-                        style: TextStyles.normalTextBold,
-                      ),
-                      Text(
-                        '256 results',
-                        style: TextStyles.smallerTextRegular.copyWith(
-                          color: AppColors.gray3,
-                        ),
-                      ),
-                    ],
-                  )
-                : Align(
-                    alignment: AlignmentDirectional.centerStart,
-                    child: Text(
-                      'Recent Search',
-                      style: TextStyles.normalTextBold,
-                    ),
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Search Result',
+                  style: TextStyles.normalTextBold,
+                ),
+                Text(
+                  '256 results',
+                  style: TextStyles.smallerTextRegular.copyWith(
+                    color: AppColors.gray3,
                   ),
+                ),
+              ],
+            )
+                : Align(
+              alignment: AlignmentDirectional.centerStart,
+              child: Text(
+                'Recent Search',
+                style: TextStyles.normalTextBold,
+              ),
+            ),
             SizedBox(height: 20),
             Expanded(
               child: GridView.builder(

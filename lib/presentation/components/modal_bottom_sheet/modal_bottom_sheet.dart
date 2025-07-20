@@ -14,7 +14,7 @@ enum TimeFilter {
 
 enum RatingFilter {
   /// 1점 (가장 낮은 점수) selected ☆, unselected ★,
-  oneStar('1☆'),
+  oneStar('1★'),
 
   /// 2점
   twoStars('2★'),
