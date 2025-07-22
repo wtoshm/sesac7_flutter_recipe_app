@@ -153,15 +153,15 @@ class SignUpScreen extends StatelessWidget {
   }
 }
 
-void main() {
-  // final Recipe recipe = Recipe(name: "Traditional spare ribs baked", imageUrl: "https://cdn.pixabay.com/photo/2017/11/10/15/04/steak-2936531_1280.jpg", chef: "Chef John", cookingTime: "20 min", rating: 4.0, onChangeFavorite: () {},);
-  runApp(
-    MaterialApp(
-      home: Scaffold(
-        body: SignUpScreen(
-          onTapSignIn: () {},
-        ),
-      ),
-    ),
-  );
-}
+// void main() {
+//   // final Recipe recipe = Recipe(name: "Traditional spare ribs baked", imageUrl: "https://cdn.pixabay.com/photo/2017/11/10/15/04/steak-2936531_1280.jpg", chef: "Chef John", cookingTime: "20 min", rating: 4.0, onChangeFavorite: () {},);
+//   runApp(
+//     MaterialApp(
+//       home: Scaffold(
+//         body: SignUpScreen(
+//           onTapSignIn: () {},
+//         ),
+//       ),
+//     ),
+//   );
+// }
