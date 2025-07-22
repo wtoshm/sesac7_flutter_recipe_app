@@ -6,10 +6,10 @@ import 'package:flutter_recipe_app/ui/app_colors.dart';
 import 'package:flutter_recipe_app/ui/text_styles.dart';
 
 class SignInScreen extends StatelessWidget {
-  final VoidCallback onSignInTap;
-  final VoidCallback onSignUpTap;
+  final VoidCallback onTapSignIn;
+  final VoidCallback onTapSignUp;
 
-  const SignInScreen({super.key, required this.onSignInTap, required this.onSignUpTap});
+  const SignInScreen({super.key, required this.onTapSignIn, required this.onTapSignUp});
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +61,7 @@ class SignInScreen extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 20),
-                BigButton(text: 'Sign In', onClick: onSignInTap),
+                BigButton(text: 'Sign In', onClick: onTapSignIn),
                 SizedBox(height: 25),
                 Row(
                   spacing: 7,
@@ -111,7 +111,7 @@ class SignInScreen extends StatelessWidget {
                       ),
                     ),
                     InkWell(
-                      onTap: onSignUpTap,
+                      onTap: onTapSignUp,
                       child: Text(
                         'Sign Up',
                         style: TextStyles.smallerTextRegular.copyWith(
@@ -137,7 +137,7 @@ void main() {
     MaterialApp(
       home: Scaffold(
         body: SignInScreen(
-          onSignInTap: () {}, onSignUpTap: () {  },
+          onTapSignIn: () {}, onTapSignUp: () {  },
         ),
       ),
     ),
