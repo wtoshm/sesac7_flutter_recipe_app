@@ -132,7 +132,7 @@ class SignUpScreen extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    GestureDetector(
+                    InkWell(
                       onTap: onSignInTap,
                       child: Text(
                         'Sign In',
