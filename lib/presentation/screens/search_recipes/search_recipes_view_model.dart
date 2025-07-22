@@ -26,8 +26,8 @@ class SearchRecipesViewModel with ChangeNotifier {
   Future<void> fetchRecipes() async {
     _state = state.copyWith(isRecipesLoading: true);
 
-   final List<Recipe> allRecipes = await _recipeRepository.getAllRecipes();
-   _state = state.copyWith(allRecipes: allRecipes, );
+   // final List<Recipe> allRecipes = await _recipeRepository.getAllRecipes();
+   // _state = state.copyWith(allRecipes: allRecipes, );
 
   }
 

@@ -7,13 +7,13 @@ import 'package:flutter_recipe_app/data/recipe_repository/recipe_repository.dart
 import 'package:flutter_recipe_app/data/recipe_repository/recipe_repository_impl.dart';
 import 'package:flutter_recipe_app/presentation/screens/auth/sign_up_screen.dart';
 import 'package:flutter_recipe_app/presentation/screens/home/home_screen.dart';
+import 'package:flutter_recipe_app/presentation/screens/main_screen/tabs_screen.dart';
 import 'package:flutter_recipe_app/presentation/screens/notifications/notifications_screen.dart';
 import 'package:flutter_recipe_app/presentation/screens/profile/profile_screeen.dart';
 import 'package:flutter_recipe_app/presentation/screens/saved_recipes/saved_recipes_screen.dart';
 import 'package:flutter_recipe_app/presentation/screens/saved_recipes/saved_recipes_view_model.dart';
 import 'package:flutter_recipe_app/presentation/screens/splash_screen.dart';
 import 'package:go_router/go_router.dart';
-import 'package:http/http.dart' as http;
 
 import '../../presentation/screens/auth/sign_in_screen.dart';
 
@@ -34,7 +34,9 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: Routes.signIn,
       builder: (BuildContext context, GoRouterState state) => SignInScreen(
-        onTapSignIn: () => context.go(Routes.home),
+        onTapSignIn: () {
+          context.go(Routes.home);
+        },
         onTapSignUp: () => context.go(Routes.signUp),
       ),
     ),
@@ -45,6 +47,15 @@ final GoRouter router = GoRouter(
       ),
     ),
     StatefulShellRoute.indexedStack(
+      builder: (context, state, navigationShell) {
+        return TabsScreen(
+          body: navigationShell,
+          currentIndex: navigationShell.currentIndex,
+          onTap: (int index) {
+            navigationShell.goBranch(index);
+          },
+        );
+      },
       branches: [
         StatefulShellBranch(
           routes: [

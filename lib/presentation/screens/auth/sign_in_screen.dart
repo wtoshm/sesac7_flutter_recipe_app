@@ -61,7 +61,7 @@ class SignInScreen extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 20),
-                BigButton(text: 'Sign In', onClick: onTapSignIn),
+                BigButton(text: 'Sign In', onClick: () => onTapSignIn()),
                 SizedBox(height: 25),
                 Row(
                   spacing: 7,
