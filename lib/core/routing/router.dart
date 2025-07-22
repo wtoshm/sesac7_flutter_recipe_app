@@ -23,8 +23,8 @@ final RecipeRepository recipeRepository = RecipeRepositoryImpl(
 );
 
 final GoRouter router = GoRouter(
+  initialLocation: Routes.splash,
   routes: [
-    // initialLocation: Routes.splash,
     GoRoute(
       path: Routes.splash,
       builder: (context, state) => SplashScreen(
