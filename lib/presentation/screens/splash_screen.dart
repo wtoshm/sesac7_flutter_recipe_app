@@ -4,9 +4,9 @@ import 'package:flutter_recipe_app/ui/app_colors.dart';
 import '../../ui/text_styles.dart';
 
 class SplashScreen extends StatelessWidget {
-  final VoidCallback onStartCookingTap;
+  final VoidCallback onTapStartCooking;
 
-  const SplashScreen({super.key, required this.onStartCookingTap});
+  const SplashScreen({super.key, required this.onTapStartCooking});
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,7 @@ class SplashScreen extends StatelessWidget {
                 Text('Simple way to find Tasty Recipe', style: TextStyles.normalTextRegular.copyWith(color: AppColors.white), )
               ],),
               SizedBox(height: 64),
-              MediumButton(text: 'Start Cooking', onClick: onStartCookingTap),
+              MediumButton(text: 'Start Cooking', onClick: onTapStartCooking),
               SizedBox(height: 84),
             ],
           ),
