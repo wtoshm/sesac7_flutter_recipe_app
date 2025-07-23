@@ -4,8 +4,9 @@ import 'package:flutter_recipe_app/ui/text_styles.dart';
 
 class ProcedureCard extends StatelessWidget {
   final String procedure;
+  final int index;
 
-  const ProcedureCard({super.key, required this.procedure});
+  const ProcedureCard({super.key, required this.procedure, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +18,10 @@ class ProcedureCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Step 1',
+            'Step $index',
             style: TextStyles.smallerTextBold,
           ),
           SizedBox(height: 10),
