@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_recipe_app/data/models/ingredient.dart';
 import 'package:flutter_recipe_app/ui/app_colors.dart';
 import 'package:flutter_recipe_app/ui/text_styles.dart';
 
-import '../../../data/model/ingredient.dart';
+
 
 class IngredientCard extends StatelessWidget {
   final Ingredient ingredient;
@@ -59,12 +60,12 @@ class IngredientCard extends StatelessWidget {
   }
 }
 
-void main() {
-  final tomatos = Ingredient(
-    title: 'Tomatos',
-    imageUrl:
-        'https://cdn.pixabay.com/photo/2017/10/06/17/17/tomato-2823826_1280.jpg',
-    quantity: 500,
-  );
-  runApp(MaterialApp(home: Scaffold(body: Center(child: IngredientCard(ingredient: tomatos)))));
-}
+// void main() {
+//   final tomatos = Ingredient(
+//     title: 'Tomatos',
+//     imageUrl:
+//         'https://cdn.pixabay.com/photo/2017/10/06/17/17/tomato-2823826_1280.jpg',
+//     quantity: 500,
+//   );
+//   runApp(MaterialApp(home: Scaffold(body: Center(child: IngredientCard(ingredient: tomatos)))));
+// }

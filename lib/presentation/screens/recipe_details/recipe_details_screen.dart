@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_recipe_app/data/mock_data/mock_ingredients.dart';
+
 import 'package:flutter_recipe_app/data/mock_data/mock_procedures.dart';
-import 'package:flutter_recipe_app/data/model/recipe.dart';
+
 import 'package:flutter_recipe_app/presentation/components/cards/chef_card_with_follow.dart';
 import 'package:flutter_recipe_app/presentation/components/cards/recipe_details_recipe_card.dart';
+import 'package:flutter_recipe_app/presentation/screens/recipe_details/recipe_details_view_model.dart';
 import 'package:flutter_recipe_app/presentation/screens/recipe_details_tabs/procedures_tab_screen.dart';
 import 'package:flutter_recipe_app/ui/app_colors.dart';
 import 'package:flutter_recipe_app/ui/text_styles.dart';
@@ -11,12 +12,18 @@ import 'package:flutter_recipe_app/ui/text_styles.dart';
 import '../recipe_details_tabs/ingredients_tab_screen.dart';
 
 class RecipeDetailsScreen extends StatelessWidget {
+  final RecipeDetailsViewModel viewModel;
+
+  const RecipeDetailsScreen({super.key, required this.viewModel});
+
   @override
   Widget build(BuildContext context) {
+    final state = viewModel.state;
     return DefaultTabController(
       length: 2,
       child: Scaffold(
         appBar: AppBar(
+          title: Text('Recipe Details ${viewModel.state.recipe?.chef}'),
           actions: [
             Padding(
               padding: const EdgeInsets.only(right: 20.0),
@@ -33,15 +40,7 @@ class RecipeDetailsScreen extends StatelessWidget {
             children: [
               // recipe_details_card
               RecipeDetailsRecipeCard(
-                recipe: Recipe(
-                  name: "Traditional spare ribs baked",
-                  imageUrl:
-                      "https://cdn.pixabay.com/photo/2017/11/10/15/04/steak-2936531_1280.jpg",
-                  chef: "Chef John",
-                  cookingTime: "20 min",
-                  rating: 4.0,
-                  onChangeFavorite: () {},
-                ),
+                recipe: state.recipe!,
               ),
               SizedBox(height: 10),
               // chef
@@ -70,8 +69,8 @@ class RecipeDetailsScreen extends StatelessWidget {
               Expanded(
                 child: TabBarView(
                   children: [
-                    IngredientsTabScreen(ingredients: mock_ingredients),
-                    ProceduresTabScreen(procedures: mock_procedures),
+                    IngredientsTabScreen(ingredients: state.recipe!.ingredients),
+                    ProceduresTabScreen(procedures: state.recipe!.procedures),
                   ],
                 ),
               ),
@@ -81,13 +80,25 @@ class RecipeDetailsScreen extends StatelessWidget {
       ),
     );
   }
+
+
 }
 
-void main() {
-  runApp(
-    MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: RecipeDetailsScreen(),
-    ),
-  );
-}
+// Recipe(
+// name: "Traditional spare ribs baked",
+// imageUrl:
+// "https://cdn.pixabay.com/photo/2017/11/10/15/04/steak-2936531_1280.jpg",
+// chef: "Chef John",
+// cookingTime: "20 min",
+// rating: 4.0,
+// onChangeFavorite: () {},
+// )
+
+// void main() {
+//   runApp(
+//     MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       home: RecipeDetailsScreen(viewModel: ),
+//     ),
+//   );
+// }

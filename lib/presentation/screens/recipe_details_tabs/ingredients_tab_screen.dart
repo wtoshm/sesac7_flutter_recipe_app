@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_recipe_app/data/models/ingredient.dart';
 import 'package:flutter_recipe_app/presentation/components/cards/ingredient_card.dart';
 import 'package:flutter_recipe_app/ui/app_colors.dart';
 import 'package:flutter_recipe_app/ui/text_styles.dart';
 
-import '../../../data/model/ingredient.dart';
 
 class IngredientsTabScreen extends StatelessWidget {
   final List<Ingredient> ingredients;
