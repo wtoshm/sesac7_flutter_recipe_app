@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_recipe_app/data/model/recipe.dart';
-import 'package:flutter_recipe_app/data/recipe_repository/recipe_repository.dart';
-import 'package:flutter_recipe_app/data/recipe_repository/recipe_repository_impl.dart';
-import 'package:flutter_recipe_app/presentation/screens/search_recipes/search_recipes_state.dart';
 
-class SearchRecipesViewModel with ChangeNotifier {
-  final RecipeRepository _recipeRepository;
+import 'package:flutter_recipe_app/data/repositories/recipe_repository_impl.dart';
+import 'package:flutter_recipe_app/data/repositories/recipe_summary_repository.dart';
 
-  SearchRecipesViewModel(this._recipeRepository);
+import 'package:flutter_recipe_app/presentation/screens/searched_recipe_summaries/searched_recipe_summaries_state.dart';
 
-  SearchRecipesState _state = SearchRecipesState();
-  SearchRecipesState get state => _state;
+class SearchedRecipeSummariesViewModel with ChangeNotifier {
+  final RecipeSummaryRepository _recipeSummaryRepository;
+
+  SearchedRecipeSummariesViewModel({
+    required RecipeSummaryRepository recipeSummaryRepository,
+  }) : _recipeSummaryRepository = recipeSummaryRepository;
+
+  SearchedRecipeSummariesState _state = SearchedRecipeSummariesState();
+  SearchedRecipeSummariesState get state => _state;
 
   // final List<Recipe> allRecipes;
   // @override
@@ -30,6 +33,7 @@ class SearchRecipesViewModel with ChangeNotifier {
    // _state = state.copyWith(allRecipes: allRecipes, );
 
   }
+
 
   // List<Recipe> _allRecipes = [];
   // List<Recipe> get allRecipes => List.unmodifiable(_allRecipes);

@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_recipe_app/data/mock_data/json_recipes.dart';
-import 'package:flutter_recipe_app/data/model/recipe.dart';
+import 'package:flutter_recipe_app/data/mock_data/json_recipes.raw.original.dart';
+import 'package:flutter_recipe_app/data/models/recipe_summary.dart';
+
 import 'package:flutter_recipe_app/presentation/components/cards/searched_recipe_card.dart';
 import 'package:flutter_recipe_app/presentation/components/modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:flutter_recipe_app/presentation/screens/searched_recipe_summaries/searched_recipe_summaries_view_model.dart';
 import 'package:flutter_recipe_app/ui/app_colors.dart';
 import 'package:flutter_recipe_app/ui/text_styles.dart';
 
-class SearchRecipesScreen extends StatelessWidget {
+class SearchedRecipeSummariesScreen extends StatelessWidget {
   final bool isShowingSearchResult;
+  final SearchedRecipeSummariesViewModel viewModel;
 
-  const SearchRecipesScreen({super.key, required this.isShowingSearchResult});
+  const SearchedRecipeSummariesScreen({
+    super.key,
+    required this.isShowingSearchResult,
+    required this.viewModel,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -48,44 +55,47 @@ class SearchRecipesScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(width: 20),
-                IconButton(onPressed: () {
-                  showModalBottomSheet(
-                    context: context, builder: (BuildContext context) {
-                    return ModalBottomSheet();
-                  },);
-                },
+                IconButton(
+                  onPressed: () {
+                    showModalBottomSheet(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return ModalBottomSheet();
+                      },
+                    );
+                  },
                   icon: Icon(
                     Icons.filter_alt_outlined,
                     size: 40,
-                    color: AppColors.primary100,),
-
+                    color: AppColors.primary100,
+                  ),
                 ),
               ],
             ),
             SizedBox(height: 20),
             isShowingSearchResult
                 ? Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Search Result',
-                  style: TextStyles.normalTextBold,
-                ),
-                Text(
-                  '256 results',
-                  style: TextStyles.smallerTextRegular.copyWith(
-                    color: AppColors.gray3,
-                  ),
-                ),
-              ],
-            )
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Search Result',
+                        style: TextStyles.normalTextBold,
+                      ),
+                      Text(
+                        '256 results',
+                        style: TextStyles.smallerTextRegular.copyWith(
+                          color: AppColors.gray3,
+                        ),
+                      ),
+                    ],
+                  )
                 : Align(
-              alignment: AlignmentDirectional.centerStart,
-              child: Text(
-                'Recent Search',
-                style: TextStyles.normalTextBold,
-              ),
-            ),
+                    alignment: AlignmentDirectional.centerStart,
+                    child: Text(
+                      'Recent Search',
+                      style: TextStyles.normalTextBold,
+                    ),
+                  ),
             SizedBox(height: 20),
             Expanded(
               child: GridView.builder(
@@ -98,6 +108,8 @@ class SearchRecipesScreen extends StatelessWidget {
                 itemBuilder: (BuildContext context, int index) {
                   final jsonRecipe = jsonRecipes['recipes']![index];
 
+                  final String category = jsonRecipe['category'] as String;
+                  final int id = jsonRecipe['id'] as int;
                   final String name = jsonRecipe['name'] as String;
                   final String imageUrl = jsonRecipe['image'] as String;
                   final String chef = jsonRecipe['chef'] as String;
@@ -105,13 +117,14 @@ class SearchRecipesScreen extends StatelessWidget {
                   final double rating = jsonRecipe['rating'] as double;
 
                   return SearchedRecipeCard(
-                    recipe: Recipe(
+                    recipeSummary: RecipeSummary(
+                      category: category,
+                      id: id,
                       name: name,
-                      imageUrl: imageUrl,
+                      image: imageUrl,
                       chef: chef,
-                      cookingTime: cookingTime,
+                      time: cookingTime,
                       rating: rating,
-                      onChangeFavorite: () {},
                     ),
                   );
                 },
@@ -124,10 +137,10 @@ class SearchRecipesScreen extends StatelessWidget {
   }
 }
 
-void main() {
-  runApp(
-    MaterialApp(
-      home: SearchRecipesScreen(isShowingSearchResult: false),
-    ),
-  );
-}
+// void main() {
+//   runApp(
+//     MaterialApp(
+//       home: SearchedRecipeSummariesScreen(isShowingSearchResult: false),
+//     ),
+//   );
+// }

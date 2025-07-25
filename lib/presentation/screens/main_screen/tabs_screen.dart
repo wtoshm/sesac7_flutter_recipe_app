@@ -32,7 +32,7 @@ class TabsScreen extends StatelessWidget {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.bookmark),
-            label: 'Bookmark',
+            label: 'Saved Recipes',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.alarm),
