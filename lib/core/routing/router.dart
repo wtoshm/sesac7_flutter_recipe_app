@@ -1,30 +1,51 @@
 // GoRouter configuration
 import 'package:flutter/material.dart';
+
 import 'package:flutter_recipe_app/core/routing/routes.dart';
-import 'package:flutter_recipe_app/data/data_source/recipe_data_source.dart';
-import 'package:flutter_recipe_app/data/data_source/recipe_data_source_impl.dart';
-import 'package:flutter_recipe_app/data/recipe_repository/recipe_repository.dart';
-import 'package:flutter_recipe_app/data/recipe_repository/recipe_repository_impl.dart';
+
+import 'package:flutter_recipe_app/domain/use_case/get_saved_recipe_summaries_use_case.dart';
 import 'package:flutter_recipe_app/presentation/screens/auth/sign_up_screen.dart';
 import 'package:flutter_recipe_app/presentation/screens/home/home_screen.dart';
 import 'package:flutter_recipe_app/presentation/screens/main_screen/tabs_screen.dart';
 import 'package:flutter_recipe_app/presentation/screens/notifications/notifications_screen.dart';
 import 'package:flutter_recipe_app/presentation/screens/profile/profile_screeen.dart';
-import 'package:flutter_recipe_app/presentation/screens/saved_recipes/saved_recipes_screen.dart';
-import 'package:flutter_recipe_app/presentation/screens/saved_recipes/saved_recipes_view_model.dart';
+
+import 'package:flutter_recipe_app/presentation/screens/saved_recipe_summaries/saved_recipe_summaries_screen.dart';
+import 'package:flutter_recipe_app/presentation/screens/saved_recipe_summaries/saved_recipe_summaries_view_model.dart';
+
 import 'package:flutter_recipe_app/presentation/screens/splash_screen.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../presentation/screens/auth/sign_in_screen.dart';
 
-final RecipeDataSource recipeDataSource = RecipeDataSourceImpl();
-final RecipeRepository recipeRepository = RecipeRepositoryImpl(
-  recipeDataSource,
-);
 
 final GoRouter router = GoRouter(
   initialLocation: Routes.splash,
   routes: [
+    // GoRoute(
+    //   path: Routes.recipeDetailsWithId,
+    //   builder: (context, state) {
+    //     final id = state.pathParameters['id'];
+    //     if (id == null) {
+    //       return Scaffold(
+    //         body: Center(
+    //           child: Text('잘못된 페이지 요청'),
+    //         ),
+    //       );
+    //     }
+    //     final viewModel = RecipeDetailsViewModel(
+    //       getRecipeUseCase: _getRecipeUseCase,
+    //     );
+    //     viewModel.fetchRecipe(int.parse(id));
+    //
+    //     return ListenableBuilder(
+    //       listenable: viewModel,
+    //       builder: (context, child) {
+    //         return RecipeDetailsScreen(viewModel: viewModel);
+    //       },
+    //     );
+    //   },
+    // ),
     GoRoute(
       path: Routes.splash,
       builder: (context, state) => SplashScreen(
@@ -70,12 +91,19 @@ final GoRouter router = GoRouter(
             GoRoute(
               path: Routes.savedRecipes,
               builder: (context, state) {
-                final SavedRecipesViewModel savedRecipeViewModel =
-                    SavedRecipesViewModel(recipeRepository);
+                final viewModel = SavedRecipeSummariesViewModel(
+                GetSavedRecipeSummariesUseCase
+                );
+
+                viewModel.fetchSavedRecipes();
                 return ListenableBuilder(
-                  listenable: savedRecipeViewModel,
+                  listenable: viewModel,
                   builder: (context, child) {
-                    return SavedRecipesScreen(viewModel: savedRecipeViewModel);
+                    return SavedRecipeSummariesScreen(
+                      viewModel: viewModel,
+                      onTapRecipeCard:
+                      },
+                    );
                   },
                 );
               },

@@ -11,4 +11,11 @@ abstract class Routes {
   static const String savedRecipes = '/saved-recipes';
   static const String notifications = '/notifications';
   static const String profile = '/profile';
+  static const String recipeDetails = '/recipe-details';
+  static const String recipeDetailsWithId = '/recipe-details/:id';
+  static const String ingredient = '/saved-recipes/ingredient';
+
+  static String getRecipeDetailsWithId(int id) => '$recipeDetails/$id';
+
+
 }
