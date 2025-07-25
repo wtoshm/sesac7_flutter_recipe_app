@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_recipe_app/data/model/recipe.dart';
+import 'package:flutter_recipe_app/data/models/recipe_summary.dart';
+
 import 'package:flutter_recipe_app/ui/app_colors.dart';
 import 'package:flutter_recipe_app/ui/text_styles.dart';
 
-class RecipeCard extends StatelessWidget {
-  final Recipe recipe;
+class RecipeSummaryCard extends StatelessWidget {
+  final RecipeSummary recipeSummary;
   
-  const RecipeCard({required this.recipe});
+  const RecipeSummaryCard({super.key, required this.recipeSummary});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class RecipeCard extends StatelessWidget {
           children: [
             Positioned.fill(
               child: Image.network(
-                recipe.imageUrl,
+                recipeSummary.image,
                 fit: BoxFit.cover,
               ),
             ),
@@ -45,7 +46,7 @@ class RecipeCard extends StatelessWidget {
               left: 10,
               right: 150, // Ensures text can wrap if the text is long
               child: Text(
-                recipe.chef,
+                recipeSummary.chef,
                 style: TextStyles.smallerTextRegular.copyWith(
                   color: AppColors.gray4,
                 ),
@@ -56,7 +57,7 @@ class RecipeCard extends StatelessWidget {
               left: 10,
               right: 150, // Ensures text can wrap if the text is long
               child: Text(
-                recipe.name,
+                recipeSummary.name,
                 style: TextStyles.smallTextBold.copyWith(
                   color: AppColors.white,
                 ),
@@ -65,7 +66,7 @@ class RecipeCard extends StatelessWidget {
             Positioned(
               bottom: 13.5,
               right: 44,
-              child: CookingTimeWidget(cookingTime: recipe.cookingTime),
+              child: CookingTimeWidget(cookingTime: recipeSummary.time),
             ),
             Positioned(
               bottom: 10,
@@ -87,7 +88,7 @@ class RecipeCard extends StatelessWidget {
             Positioned(
               top: 10,
               right: 10,
-              child: RatingWidget(rating: recipe.rating),
+              child: RatingWidget(rating: recipeSummary.rating),
             ),
           ],
         ),
@@ -181,18 +182,18 @@ class RatingWidget extends StatelessWidget {
 //   );
 // }
 
-void main() {
-  final Recipe recipe = Recipe(name: "Traditional spare ribs baked", imageUrl: "https://cdn.pixabay.com/photo/2017/11/10/15/04/steak-2936531_1280.jpg", chef: "Chef John", cookingTime: "20 min", rating: 4.0, onChangeFavorite: () {},);
-  runApp(
-    MaterialApp(
-      home: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.all(30.0),
-          child: Center(
-            child: RecipeCard(recipe: recipe),
-          ),
-        ),
-      ),
-    ),
-  );
-}
+// void main() {
+//   final Recipe recipe = Recipe(name: "Traditional spare ribs baked", imageUrl: "https://cdn.pixabay.com/photo/2017/11/10/15/04/steak-2936531_1280.jpg", chef: "Chef John", cookingTime: "20 min", rating: 4.0, onChangeFavorite: () {},);
+//   runApp(
+//     MaterialApp(
+//       home: Scaffold(
+//         body: Padding(
+//           padding: const EdgeInsets.all(30.0),
+//           child: Center(
+//             child: RecipeCard(recipe: recipe),
+//           ),
+//         ),
+//       ),
+//     ),
+//   );
+// }

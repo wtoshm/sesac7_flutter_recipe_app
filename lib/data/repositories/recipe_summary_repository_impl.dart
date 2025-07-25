@@ -1,6 +1,6 @@
 import 'package:flutter_recipe_app/data/mock_data/recipe_mock_data/mock_json_recipe_summary_list.dart';
 import 'package:flutter_recipe_app/data/models/recipe_summary.dart';
-import 'package:flutter_recipe_app/data/recipe_repository/recipe_summary_repository.dart';
+import 'package:flutter_recipe_app/data/repositories/recipe_summary_repository.dart';
 
 class RecipeSummaryRepositoryImpl implements RecipeSummaryRepository {
   @override
